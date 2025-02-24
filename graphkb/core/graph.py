@@ -1,3 +1,4 @@
+import os
 import networkx as nx
 import redis
 import json
@@ -7,8 +8,8 @@ from graphkb.core.models import Node, Edge
 class GraphKnowledgeBase:
     def __init__(
         self,
-        redis_host: str = "localhost",
-        redis_port: int = 6379,
+        redis_host: str = os.getenv("REDIS_HOST", "localhost"),
+        redis_port: int = int(os.getenv("REDIS_PORT", 6379)),
         graph_name: str = "knowledge_base",
     ):
         self.graph_name = graph_name

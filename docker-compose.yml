@@ -1,0 +1,24 @@
+
+services:
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis_data:/data
+
+  graphkb:
+    build: .
+    container_name: graphkb
+    depends_on:
+      - redis
+    ports:
+      - "${GRAPHKB_PORT:-8000}:8000"
+    environment:
+      - REDIS_HOST=${REDIS_HOST:-redis}
+      - REDIS_PORT=${REDIS_PORT:-6379}
+    command: ["uvicorn", "graphkb.api.main:app", "--host", "0.0.0.0", "--port", "${GRAPHKB_PORT:-8000}"]
+
+volumes:
+  redis_data:
