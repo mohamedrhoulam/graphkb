@@ -4,7 +4,7 @@ from graphkb.core.models import Node, Edge
 from graphkb.core.queries import Queries
 
 router = APIRouter()
-gkb = GraphKnowledgeBase()  # this uses in-memory storage for now
+gkb = GraphKnowledgeBase()  
 queries = Queries(gkb)
 
 

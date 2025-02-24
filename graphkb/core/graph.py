@@ -54,5 +54,3 @@ class GraphKnowledgeBase:
             )
         else:
             raise ValueError(f"Edge from {source} to {target} does not exist")
-
-
